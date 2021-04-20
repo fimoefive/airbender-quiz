@@ -1,7 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
+import getQuestions from './helpers/data/avatarData';
 
 function App() {
+  const [allQuestions, setAllQuestions] = useState([]);
+  const [singleQuestion, setSingleQuestion] = useState({});
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  console.warn(allQuestions);
+  const hClick = () => {
+    if (showAnswer) {
+      setShowAnswer(false);
+      setSingleQuestion(allQuestions[Math.floor(Math.random() * allQuestions.length)]);
+    } else {
+      setShowAnswer(true);
+    }
+  };
+
+  useEffect(() => {
+    getQuestions()
+      .then((questions) => {
+        setAllQuestions(questions);
+        setSingleQuestion(questions[Math.floor(Math.random() * questions.length)]);
+      });
+  }, []);
+
   const [domWriting, setDomWriting] = useState('Nothing Here!');
 
   const handleClick = (e) => {
@@ -13,6 +36,13 @@ function App() {
     <div className='App'>
       <h2>INSIDE APP COMPONENT</h2>
       <div>
+        <h1>{singleQuestion.question}</h1>
+        <p>{showAnswer && singleQuestion.correctAnswer}</p>
+        <button onClick={hClick}>
+          {showAnswer ? 'Get Another Question' : 'Get Answer'}
+        </button>
+        <br></br>
+
         <button
           id='this-button'
           className='btn btn-info'
