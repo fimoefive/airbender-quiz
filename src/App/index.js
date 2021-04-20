@@ -48,8 +48,9 @@ function App() {
           : <div>
             <Button id="Popover1" type="button">
               Launch Popover
-      </Button>
-            <Popover placement="bottom" isOpen={popoverOpen} target="Popover1" toggle={toggle}>
+            </Button>
+            <br></br>
+            <Popover placement="bottom" isOpen={popoverOpen} target="Popover1" toggle={toggle} trigger="hover">
               <PopoverHeader>Possible Answers</PopoverHeader>
               <PopoverBody>
                 <ul>
