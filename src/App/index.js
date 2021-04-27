@@ -7,11 +7,12 @@ import './App.scss';
 import getQuestions from './helpers/data/avatarData';
 
 function App() {
-  const [popoverOpen, setPopoverOpen] = useState(false);
-  const toggle = () => setPopoverOpen(!popoverOpen);
   const [allQuestions, setAllQuestions] = useState([]);
   const [singleQuestion, setSingleQuestion] = useState({});
   const [showAnswer, setShowAnswer] = useState(false);
+  const [popoverOpen, setPopoverOpen] = useState(false);
+
+  const toggle = () => setPopoverOpen(!popoverOpen);
 
   console.warn(allQuestions);
   const hClick = () => {
@@ -31,16 +32,9 @@ function App() {
       });
   }, []);
 
-  const [domWriting, setDomWriting] = useState('Nothing Here!');
-
-  const handleClick = (e) => {
-    console.warn(`You clicked ${e.target.id}`);
-    setDomWriting(`You clicked ${e.target.id}! Check the Console!`);
-  };
-
   return (
     <div className='App'>
-      <h2>INSIDE APP COMPONENT</h2>
+      <h2>AirBender Quiz</h2>
       <div>
         <h1>{singleQuestion.question}</h1>
         <p>{showAnswer && singleQuestion.correctAnswer}</p>
@@ -57,34 +51,16 @@ function App() {
                   {singleQuestion.possibleAnsers?.map((pa, i) => <li key={i}>{pa}</li>)}
                 </ul>
               </PopoverBody>
-              {/* <PopoverBody>{singleQuestion.possibleAnsers?.join(', ')}
+              {/* A Way to toggle with join()
+              <PopoverBody>{singleQuestion.possibleAnserssingleQuestion.possibleAnsers?.join(', ')}
             </PopoverBody> */}
             </Popover>
           </div>}
-
+        <br />
         <Button color="info" onClick={hClick}>
           {showAnswer ? 'Get Another Question' : 'Get Answer'}
         </Button>
-        <br></br>
-
-        <button
-          id='this-button'
-          className='btn btn-info'
-          onClick={handleClick}
-        >
-          I am THIS button
-        </button>
       </div>
-      <div>
-        <button
-          id='that-button'
-          className='btn btn-primary mt-3'
-          onClick={handleClick}
-        >
-          I am THAT button
-        </button>
-      </div>
-      <h3>{domWriting}</h3>
     </div>
   );
 }
