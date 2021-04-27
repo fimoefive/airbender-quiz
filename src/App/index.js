@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button, Popover,
-  PopoverHeader, PopoverBody
+  PopoverBody, PopoverHeader
 } from 'reactstrap';
 import './App.scss';
 import getQuestions from './helpers/data/avatarData';
