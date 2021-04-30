@@ -4,7 +4,7 @@ import {
   PopoverBody, PopoverHeader
 } from 'reactstrap';
 import './App.scss';
-import getQuestions from './helpers/data/avatarData';
+import getQuestions from '../helpers/data/avatarData';
 
 function App() {
   const [allQuestions, setAllQuestions] = useState([]);
